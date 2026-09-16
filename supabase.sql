@@ -8,12 +8,12 @@ create table if not exists public.people (
 );
 
 insert into public.people (id, name, colour) values
-  ('person-1', 'Piet',  '#2563eb'),
-  ('person-2', 'Jan',   '#16a34a'),
-  ('person-3', 'Klaas', '#dc2626'),
-  ('person-4', 'Hans',  '#9333ea'),
-  ('person-5', 'Anna',  '#ea580c'),
-  ('person-6', 'Marie', '#0891b2')
+  ('person-1', 'Jonathan',  '#2563eb'),
+  ('person-2', 'Samuel',   '#16a34a'),
+  ('person-3', 'Jurian', '#dc2626'),
+  ('person-4', 'Laurens',  '#9333ea'),
+  ('person-5', 'Daniël',  '#ea580c'),
+  ('person-6', 'Pablo', '#0891b2')
 on conflict (id) do update
 set name = excluded.name,
     colour = excluded.colour;
