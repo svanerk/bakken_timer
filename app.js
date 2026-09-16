@@ -12,14 +12,7 @@ const db = supabaseConfigured
   : null;
 
 // Pas hier de zes namen en kleuren aan.
-const PEOPLE = [
-  { id: "person-1", name: "Jonathan",  color: "#2563eb" },
-  { id: "person-2", name: "Samuel",   color: "#16a34a" },
-  { id: "person-3", name: "Jurian", color: "#dc2626" },
-  { id: "person-4", name: "Laurens",  color: "#9333ea" },
-  { id: "person-5", name: "Daniël",  color: "#ea580c" },
-  { id: "person-6", name: "Pablo", color: "#0891b2" }
-];
+let PEOPLE = [];
 
 const homeScreen = document.querySelector("#homeScreen");
 const timerScreen = document.querySelector("#timerScreen");
@@ -44,19 +37,39 @@ function showError(message) {
   setTimeout(() => errorBanner.classList.add("hidden"), 5000);
 }
 
+async function loadPeople() {
+  if (!db) {
+    showError("Supabase is niet ingesteld.");
+    return;
+  }
+
+  const { data, error } = await db
+    .from("people")
+    .select("id, name, colour")
+    .order("id");
+
+  if (error) {
+    console.error(error);
+    showError("De personen konden niet worden geladen.");
+    return;
+  }
+
+  PEOPLE = data;
+  renderPeople();
+}
+
 function renderPeople() {
   peopleGrid.innerHTML = "";
 
   PEOPLE.forEach(person => {
     const button = document.createElement("button");
     button.className = "person-button";
-    button.style.background = person.color;
+    button.style.background = person.colour;
     button.textContent = person.name;
     button.addEventListener("click", () => selectPerson(person));
     peopleGrid.appendChild(button);
   });
 }
-
 function selectPerson(person) {
   selectedPerson = person;
   selectedPersonEl.textContent = person.name;
@@ -221,4 +234,4 @@ document.querySelector("#backBtn").addEventListener("click", showHome);
 document.querySelector("#scoreboardBtn").addEventListener("click", showScoreboard);
 document.querySelector("#closeScoreboardBtn").addEventListener("click", showHome);
 
-renderPeople();
+loadPeople();
