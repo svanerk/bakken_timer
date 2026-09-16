@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Bakken timer en scoreboard">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Bakken</title>
+</head>
+<body>
+  <header class="topbar">
+    <h1>🍺 Bakken</h1>
+    <button id="scoreboardBtn" class="icon-button" aria-label="Scoreboard">🏆</button>
+  </header>
+
+  <main>
+    <section id="homeScreen" class="screen">
+      <p class="instruction">Kies een persoon</p>
+      <div id="peopleGrid" class="people-grid"></div>
+    </section>
+
+    <section id="timerScreen" class="screen hidden">
+      <button id="backBtn" class="back-button">← Terug</button>
+      <div id="selectedPerson" class="selected-person"></div>
+      <div id="timer" class="timer">0.00</div>
+      <div class="timer-unit">seconden</div>
+      <button id="timerBtn" class="timer-button">START</button>
+      <p id="timerStatus" class="timer-status"></p>
+    </section>
+
+    <section id="scoreboardScreen" class="screen hidden">
+      <div class="scoreboard-header">
+        <h2>🏆 Scoreboard</h2>
+        <button id="closeScoreboardBtn" class="close-button">✕</button>
+      </div>
+      <div id="scoreboard" class="scoreboard"></div>
+      <p id="scoreboardStatus" class="status"></p>
+    </section>
+  </main>
+
+  <div id="errorBanner" class="error-banner hidden"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+    }
+  </script>
+</body>
+</html>
