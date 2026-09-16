@@ -13,12 +13,12 @@ const db = supabaseConfigured
 
 // Pas hier de zes namen en kleuren aan.
 const PEOPLE = [
-  { id: "person-1", name: "Piet",  color: "#2563eb" },
-  { id: "person-2", name: "Jan",   color: "#16a34a" },
-  { id: "person-3", name: "Klaas", color: "#dc2626" },
-  { id: "person-4", name: "Hans",  color: "#9333ea" },
-  { id: "person-5", name: "Anna",  color: "#ea580c" },
-  { id: "person-6", name: "Marie", color: "#0891b2" }
+  { id: "person-1", name: "Jonathan",  color: "#2563eb" },
+  { id: "person-2", name: "Samuel",   color: "#16a34a" },
+  { id: "person-3", name: "Jurian", color: "#dc2626" },
+  { id: "person-4", name: "Laurens",  color: "#9333ea" },
+  { id: "person-5", name: "Daniël",  color: "#ea580c" },
+  { id: "person-6", name: "Pablo", color: "#0891b2" }
 ];
 
 const homeScreen = document.querySelector("#homeScreen");
