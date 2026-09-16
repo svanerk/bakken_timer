@@ -1,4 +1,4 @@
-const CACHE = "bakken-v1";
+const CACHE = "bakken-v2";
 const ASSETS = [
   "./",
   "./index.html",
